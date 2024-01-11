@@ -1,0 +1,74 @@
+﻿@model IEnumerable<MyMediaVerse.Models.Books>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>📚 Bookshelf</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" class="tableHeading" asp-route-sortOrder="@ViewData["TitleSortParm"]">@Html.DisplayNameFor(model => model.Title) &#8645</a>
+                
+            </th>
+            <th>
+                <a asp-action="Index" class="tableHeading"  asp-route-sortOrder="@ViewData["AuthorSortParm"]"> @Html.DisplayNameFor(model => model.Author) &#8645</a>
+               
+            </th>
+            <th>
+
+                <a asp-action="Index" class="tableHeading"  asp-route-sortOrder="@ViewData["GenreSortParm"]">@Html.DisplayNameFor(model => model.Genre) &#8645</a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody >
+@foreach (var item in Model) {
+            <tr class="dataTable">
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+
+            <td class="actionColumn">
+                    <div class="actionContainer">
+                        <a asp-action="Edit" asp-route-id="@item.Id">
+                            <svg id="i-edit" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="20" height="20" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                <path d="M30 7 L25 2 5 22 3 29 10 27 Z M21 6 L26 11 Z M5 22 L10 27 Z" />
+                            </svg>
+                        </a> 
+                        <a asp-action="Details" asp-route-id="@item.Id">
+                            <svg id="i-info" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="20" height="20" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                <path d="M16 14 L16 23 M16 8 L16 10" />
+                                <circle cx="16" cy="16" r="14" />
+                            </svg>
+                        </a> 
+                        <a asp-action="Delete" asp-route-id="@item.Id">
+                            <svg id="i-trash" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="20" height="20" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                <path d="M28 6 L6 6 8 30 24 30 26 6 4 6 M16 12 L16 24 M21 12 L20 24 M11 12 L12 24 M12 6 L13 2 19 2 20 6" />
+                            </svg>
+                        </a>
+                    </div>
+                   
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
